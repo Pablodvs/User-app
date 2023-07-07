@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    restart: on-failure:5
+    environment:
+      - WAIT_HOSTS=db:3306
+      - WAIT_HOSTS_TIMEOUT=30s
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: assignment
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - ./mysql-data:/var/lib/mysql
