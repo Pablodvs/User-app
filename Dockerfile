@@ -17,6 +17,9 @@ WORKDIR /var/www/html
 # Copy the application files
 COPY . /var/www/html
 
+#Copy the environment file
+COPY .env.example .env
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
