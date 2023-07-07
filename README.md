@@ -3,7 +3,8 @@ This guide provides instructions on how to install and set up the application us
 
 ## Prerequisites
 Docker and Docker Compose are installed on your machine.
-Installation Steps
+
+## Installation Steps
 Clone the repository:
 
 ```
