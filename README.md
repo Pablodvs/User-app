@@ -52,4 +52,9 @@ Access it in your web browser at http://localhost/8000/public/index.php.
 Ensure that the required ports (e.g., port 80) are not being used by other applications on your machine.
 If you make any changes to the Docker configuration or dependencies, rebuild the Docker containers using docker-compose up --build.
 
+### If you want to use it without the email verification do the next steps:
+- Models/User.php -> Delete the implementation of MustVerifyEmail
+- routes/web.php -> Change the line `Auth::routes(['verify'=>true]);` to `Auth::routes();`
+- routes/api.php -> Delete the verified middleware from the routes `->middleware('verified')`.
+
 ### Remember to keep your .env file secure and not share any sensitive information.
