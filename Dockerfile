@@ -20,17 +20,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy the environment file
 COPY . .
 
-# Copia el archivo de entorno
-COPY .env.example .env
-
 # Install Laravel application dependencies
 RUN composer install --optimize-autoloader --no-dev
 
 # Generate a Laravel application key
 RUN php artisan key:generate
-
-# Run database migrations
-RUN php artisan migrate --force
 
 # Configure storage permissions
 RUN chown -R www-data:www-data \
