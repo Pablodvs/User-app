@@ -1,4 +1,4 @@
-#Use the base PHP image with version 8.1.12
+# Use the base PHP image with version 8.1.12
 FROM php:8.1.12-apache
 
 # Install dependencies required by Laravel
@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y \
 # Configure the web server's Document Root
 WORKDIR /var/www/html
 
+# Copy the application files
+COPY . /var/www/html
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Copy the environment file
-COPY . .
 
 # Install Laravel application dependencies
 RUN composer install --optimize-autoloader --no-dev
